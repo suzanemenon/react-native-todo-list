@@ -1,3 +1,3 @@
-import themes from './themes';
+import palette from './palette';
 
-export { themes }
+export { palette }
