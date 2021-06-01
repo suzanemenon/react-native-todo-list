@@ -4,6 +4,12 @@ import { Home } from './src/pages/Home';
 
 import { palette } from './src/theme';
 
+export interface paletteObj {
+  colors: {
+    [key: string]: string;
+  }
+}
+
 export default function App() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [colors, setColors] = useState(palette['light']);
@@ -35,7 +41,7 @@ export default function App() {
   );
 }
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors: paletteObj['colors']) => StyleSheet.create({
   themeSwitcher: {
     paddingTop: StatusBar.currentHeight,
     justifyContent: 'center',

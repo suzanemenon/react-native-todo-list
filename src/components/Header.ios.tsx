@@ -1,35 +1,36 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { paletteObj } from '../../App';
 
-import { themes } from '../theme';
+interface HomeProps extends paletteObj {}
 
-const theme = themes['dark']['header'];
+export function Header({colors}: HomeProps) {
+  const headerStyles = styles(colors);
 
-export function Header() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>to.</Text>
-        <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
+    <SafeAreaView style={headerStyles.container}>
+      <View style={headerStyles.header}>
+        <Text style={headerStyles.headerText}>to.</Text>
+        <Text style={[headerStyles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
       </View>
     </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({
+const styles = (colors: paletteObj['colors']) => StyleSheet.create({
   container: {
-    backgroundColor: theme.backgroundColor,
+    backgroundColor: colors.headerBackgroundColor,
   },
   header: {
     paddingBottom: 44,
-    backgroundColor: theme.backgroundColor,
+    backgroundColor: colors.headerBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row'
   },
   headerText: {
     fontSize: 24,
-    color: theme.textColor,
+    color: colors.headerTextColor,
     fontFamily: 'Poppins-Regular',
   }
 });

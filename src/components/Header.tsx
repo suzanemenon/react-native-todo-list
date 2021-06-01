@@ -1,16 +1,20 @@
 import React from 'react';
 import { View, Text, StatusBar, StyleSheet, Switch } from 'react-native';
+import { paletteObj } from '../../App';
 
-export function Header({ colors }) {
+interface HeaderProps extends paletteObj {}
+
+export function Header({ colors }: HeaderProps) {
+  const headerStyles = styles(colors)
   return (
-    <View style={styles(colors).header}>
-      <Text style={styles(colors).headerText}>to.</Text>
-      <Text style={[styles(colors).headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
+    <View style={headerStyles.header}>
+      <Text style={headerStyles.headerText}>to.</Text>
+      <Text style={[headerStyles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
     </View>
   )
 }
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors: HeaderProps['colors']) => StyleSheet.create({
   header: {
     paddingTop: StatusBar.currentHeight,
     paddingBottom: 44,

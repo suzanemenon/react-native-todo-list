@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import { Image, Platform, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import { paletteObj } from '../../App';
 
 import checkIcon from '../assets/icons/Check.png';
 
-interface TodoInputProps {
+interface TodoInputProps extends paletteObj {
   addTask: (task: string) => void;
-  colors: any;
 }
 
 export function TodoInput({ addTask, colors }: TodoInputProps) {
   const [task, setTask] = useState('');
   
+  const inputStyles = styles(colors);
+
   function handleAddNewTask() {
     addTask(task);
     setTask('');
   }
 
   return (
-    <View style={[styles(colors).inputContainer, Platform.OS === 'ios' ? styles(colors).inputIOSShadow : styles(colors).inputAndroidShadow]}>
+    <View style={[inputStyles.inputContainer, Platform.OS === 'ios' ? inputStyles.inputIOSShadow : inputStyles.inputAndroidShadow]}>
       <TextInput 
-        style={styles(colors).input} 
+        style={inputStyles.input} 
         placeholder="Adicionar novo todo..."
         placeholderTextColor={colors.inputPlaceholderColor}
         returnKeyType="send"
@@ -30,7 +32,7 @@ export function TodoInput({ addTask, colors }: TodoInputProps) {
       <TouchableOpacity
         testID="add-new-task-button"
         activeOpacity={0.7}
-        style={styles(colors).addButton}
+        style={inputStyles.addButton}
         onPress={handleAddNewTask}
       >
         <Image source={checkIcon} />
@@ -39,7 +41,7 @@ export function TodoInput({ addTask, colors }: TodoInputProps) {
   )
 }
 
-const styles = (colors) => StyleSheet.create({
+const styles = (colors: paletteObj['colors']) => StyleSheet.create({
   inputContainer: {
     backgroundColor: colors.inputContainerBackgroundColor,
     borderRadius: 5,

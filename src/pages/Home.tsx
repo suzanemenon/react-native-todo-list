@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
+import { paletteObj } from '../../App';
 
 import { Header } from '../components/Header';
 import { MyTasksList } from '../components/MyTasksList';
@@ -11,7 +12,9 @@ interface Task {
   done: boolean;
 }
 
-export function Home({ colors }) {
+interface HomeProps extends paletteObj {}
+
+export function Home({ colors }: HomeProps) {
   const [tasks, setTasks] = useState<Task[]>([]);
   
   function handleAddTask(newTaskTitle: string) {
