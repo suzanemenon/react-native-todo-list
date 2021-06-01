@@ -1,31 +1,36 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { paletteObj } from '../../App';
 
-export function Header() {
+interface HomeProps extends paletteObj {}
+
+export function Header({colors}: HomeProps) {
+  const headerStyles = styles(colors);
+
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>to.</Text>
-        <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
+    <SafeAreaView style={headerStyles.container}>
+      <View style={headerStyles.header}>
+        <Text style={headerStyles.headerText}>to.</Text>
+        <Text style={[headerStyles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
       </View>
     </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({
+const styles = (colors: paletteObj['colors']) => StyleSheet.create({
   container: {
-    backgroundColor: '#273FAD',
+    backgroundColor: colors.headerBackgroundColor,
   },
   header: {
     paddingBottom: 44,
-    backgroundColor: '#273FAD',
+    backgroundColor: colors.headerBackgroundColor,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row'
   },
   headerText: {
     fontSize: 24,
-    color: '#FFF',
+    color: colors.headerTextColor,
     fontFamily: 'Poppins-Regular',
   }
 });

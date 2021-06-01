@@ -2,10 +2,13 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import { Home } from '../../pages/Home';
+import { palette } from '../../theme';
+
+const colors = palette['light'];
 
 describe('Home', () => {
   it('should be able to render new added tasks', () => {
-    const { getByPlaceholderText, getByText } = render(<Home />);
+    const { getByPlaceholderText, getByText } = render(<Home colors={colors}/>);
     const inputElement = getByPlaceholderText('Adicionar novo todo...');
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');
@@ -19,7 +22,7 @@ describe('Home', () => {
   });
 
   it('should not be able to add an empty task', () => {
-    const { getByPlaceholderText, queryByText } = render(<Home />);
+    const { getByPlaceholderText, queryByText } = render(<Home colors={colors}/>);
     const inputElement = getByPlaceholderText('Adicionar novo todo...');
 
     fireEvent.changeText(inputElement, '');
@@ -29,7 +32,7 @@ describe('Home', () => {
   });
 
   it('should be able to render tasks as done and undone', () => {
-    const { getByPlaceholderText, getByText, getByTestId } = render(<Home />);
+    const { getByPlaceholderText, getByText, getByTestId } = render(<Home colors={colors}/>);
     const inputElement = getByPlaceholderText('Adicionar novo todo...');
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');
@@ -76,7 +79,7 @@ describe('Home', () => {
   });
 
   it('should be able to remove tasks by "longPress" event', async () => {
-    const { getByPlaceholderText, getByText, queryByText } = render(<Home />);
+    const { getByPlaceholderText, getByText, queryByText } = render(<Home colors={colors}/>);
     const inputElement = getByPlaceholderText('Adicionar novo todo...');
 
     fireEvent.changeText(inputElement, 'Primeira tarefa');

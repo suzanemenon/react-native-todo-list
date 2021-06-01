@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import { MyTasksList } from '../../components/MyTasksList';
+import { palette } from '../../theme';
 
 let tasks: {
   id: number;
@@ -11,6 +12,8 @@ let tasks: {
 
 let mockedOnLongPress: jest.Mock;
 let mockedOnPress: jest.Mock;
+
+const colors = palette['light'];
 
 describe('MyTasksList', () => {
 
@@ -38,7 +41,7 @@ describe('MyTasksList', () => {
   });
 
   it('should be able to render all tasks', () => {
-    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} />)
+    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} colors={colors}/>)
     
     getByText('Primeiro todo');
     getByText('Segundo todo');
@@ -46,7 +49,7 @@ describe('MyTasksList', () => {
   });
 
   it('should be able to handle "longPress" event', () => {
-    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} />)
+    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} colors={colors}/>)
     const firstTask = getByText('Primeiro todo');
 
     fireEvent(firstTask, 'longPress');
@@ -55,7 +58,7 @@ describe('MyTasksList', () => {
   });
 
   it('should be able to handle "press" event', () => {    
-    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} />)
+    const { getByText } = render(<MyTasksList tasks={tasks} onLongPress={mockedOnLongPress} onPress={mockedOnPress} colors={colors}/>)
     const secondTask = getByText('Segundo todo');
 
     fireEvent.press(secondTask);
