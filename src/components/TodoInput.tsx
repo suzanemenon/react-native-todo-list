@@ -69,7 +69,7 @@ const styles = (colors: paletteObj['colors']) => StyleSheet.create({
     shadowRadius: 3.84
   },
   inputAndroidShadow: {
-    elevation: 5
+    elevation: Number(colors.inputAndroidShadow),
   },
   addButton: {
     backgroundColor: colors.inputAddButtonBackgroundColor,

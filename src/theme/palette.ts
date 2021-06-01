@@ -20,6 +20,7 @@ export default {
         inputBackgroundColor: '#F5F4F8',
         inputIOSShadowColor: '#000',
         inputAddButtonBackgroundColor: '#3FAD27',
+        inputAndroidShadow: '5',
     },
     dark: {
         switcherTrackColorOn: '#212136',
@@ -42,5 +43,6 @@ export default {
         inputBackgroundColor: '#212136',
         inputIOSShadowColor: '#000',
         inputAddButtonBackgroundColor: '#565BFF',
+        inputAndroidShadow: '0',
     },
 };
